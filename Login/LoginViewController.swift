@@ -18,19 +18,130 @@ class LoginViewController: UIViewController {
     }
 
     // TODO: instantiate the views needed for your project
+    let midView: UIView = {
+        let myView = UIView()
+        myView.backgroundColor = UIColor.white
+        myView.translatesAutoresizingMaskIntoConstraints = false
+        myView.layer.cornerRadius = 5
+        myView.layer.masksToBounds = true
+        return myView
+    } ()
+    let titleView: UIView = {
+        let myView = UIView()
+        
+        myView.backgroundColor = UIColor.clear
+        myView.translatesAutoresizingMaskIntoConstraints = false
+        myView.layer.cornerRadius = 5
+        myView.layer.masksToBounds = true
+        return myView
+    } ()
+    
+    let logButton: UIButton = {
+        
+        
+        let butto = UIButton()
+        butto.backgroundColor = UIColor.green
+        butto.setTitle("login", for: .normal)
+        butto.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        butto.addTarget(self, action: #selector(handleRegister), for: .touchUpInside)
+        return butto
+    }()
+    func handleRegister() {
+        print("123")
+        print(nameTextField.text!)
+        authenticateUser(username: nameTextField.text!, password: passwordTF.text!)
+        
+    
+    }
+    
+    let nameTextField: UITextField = {
+        let ntf = UITextField()
+        ntf.placeholder = "Name"
+        ntf.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ntf
+    
+    }()
+    
+    let passwordTF: UITextField = {
+        let ntf = UITextField()
+        ntf.placeholder = "Password"
+        ntf.translatesAutoresizingMaskIntoConstraints = false
+        
+        return ntf
+        
+    }()
+    
+    let titleLabel: UILabel = {
+        let tdp = UILabel()
+        //tdp.backgroundColor = UIColor.brown
+        tdp.text = "Login View Controller"
+        tdp.translatesAutoresizingMaskIntoConstraints = false
+        //tdp.numberOfLines = 2
+        return tdp
+    }()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = Constants.backgroundColor
         
         // TODO: Add your views either as subviews of `view` or subviews of each other using `addSubview`
+        view.addSubview(midView)
+        midView.addSubview(logButton)
+        midView.addSubview(nameTextField)
+        midView.addSubview(passwordTF)
         
+        view.addSubview(titleView)
+        titleView.addSubview(titleLabel)
         // TODO: layout your views using frames or AutoLayout
+        setupmidView()
+        setuptitleView()
     }
     
     // TODO: create an IBAction for your login button
     
+    func setupmidView() {
+        midView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        midView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        midView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
+        midView.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        
+        //set name text field
+        nameTextField.topAnchor.constraint(equalTo: midView.topAnchor, constant: 0).isActive = true
+        nameTextField.leftAnchor.constraint(equalTo: midView.leftAnchor, constant: 12).isActive = true
+        nameTextField.widthAnchor.constraint(equalTo: midView.widthAnchor, constant: -24).isActive = true
+        nameTextField.heightAnchor.constraint(equalTo: midView.heightAnchor, multiplier: 1/3).isActive = true
+        //set password text field
+        passwordTF.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 0).isActive = true
+        passwordTF.leftAnchor.constraint(equalTo: midView.leftAnchor, constant: 12).isActive = true
+        passwordTF.widthAnchor.constraint(equalTo: midView.widthAnchor, constant: -24).isActive = true
+        passwordTF.heightAnchor.constraint(equalTo: midView.heightAnchor, multiplier: 1/3).isActive = true
+        //set login button
+        logButton.topAnchor.constraint(equalTo: passwordTF.bottomAnchor, constant: 0).isActive = true
+        logButton.leftAnchor.constraint(equalTo: midView.leftAnchor, constant: 12).isActive = true
+        logButton.widthAnchor.constraint(equalTo: midView.widthAnchor, constant: -24).isActive = true
+        logButton.heightAnchor.constraint(equalTo: midView.heightAnchor, multiplier: 5/16).isActive = true
+    }
     
+    
+    func setuptitleView() {
+        
+        
+        titleView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        titleView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -250).isActive = true
+        titleView.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -24).isActive = true
+        titleView.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        //set up text
+        titleLabel.centerXAnchor.constraint(equalTo: titleView.centerXAnchor).isActive = true
+        titleLabel.centerYAnchor.constraint(equalTo: titleView.centerYAnchor).isActive = true
+        //titleLabel.widthAnchor.constraint(equalTo: titleView.widthAnchor, constant: -24).isActive = true
+        //titleLabel.heightAnchor.constraint(equalToConstant: 150).isActive = true
+        
+
+    }
     
     
     
